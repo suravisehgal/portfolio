@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suravi Sehgal — AI/ML Developer &amp; Software Engineer</title>
+  <meta name="description"
+    content="Portfolio of Suravi Sehgal — AI &amp; Data Science undergraduate, AI/ML developer, and full-stack software engineer building intelligent systems, autonomous agents, and hackathon-winning applications.">
+  <meta name="keywords"
+    content="Suravi Sehgal, AI Developer, Machine Learning Engineer, Generative AI, Next.js, Flutter, Python, Gemini, SafeStep, MIRA, Sentinel">
+  <meta name="author" content="Suravi Sehgal">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Suravi Sehgal — AI/ML Developer &amp; Software Engineer">
+  <meta property="og:description"
+    content="Building intelligent systems at the intersection of AI, data, and software. Explore verified GitHub projects, hackathon winners, and full-stack AI architectures.">
+  <meta property="og:image" content="assets/images/sentinel.jpg">
+  <meta property="og:url" content="https://github.com/suravisehgal">
+
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <!-- Google Fonts: Space Grotesk, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- Cursor Spotlight -->
+  <div class="cursor-spotlight" id="cursor-spotlight" aria-hidden="true"></div>
+
+  <!-- Ambient Dynamic Canvas & Grids -->
+  <canvas id="neural-canvas" class="canvas-bg" aria-hidden="true"></canvas>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow-blobs" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- High-Tech Opening Sequence & Neural Boot Curtain -->
+  <div id="intro-curtain" class="intro-curtain" aria-label="Neural boot animation sequence">
+    <!-- Ambient Cyber Glow & Background Grid -->
+    <div class="intro-bg-glow"></div>
+    <div class="intro-grid-pattern"></div>
+
+    <!-- Quick Skip Intro Action -->
+    <button id="skip-intro-btn" class="intro-skip-btn" title="Skip Intro (Esc)" aria-label="Skip opening animation">
+      <span>Skip Intro</span>
+      <kbd>Esc</kbd>
+    </button>
+
+    <!-- Center Neural HUD Core & Telemetry -->
+    <div class="intro-content">
+      <div class="intro-hud-core">
+        <div class="hud-ring hud-ring-outer"></div>
+        <div class="hud-ring hud-ring-mid"></div>
+        <div class="hud-ring hud-ring-inner"></div>
+        <div class="hud-crosshairs"></div>
+
+        <div class="intro-logo-badge">
+          <span class="intro-logo-text">SS</span>
+          <div class="intro-core-glow"></div>
+        </div>
+      </div>
+
+      <div class="intro-meta">
+        <div class="intro-author">SURAVI SEHGAL</div>
+        <div class="intro-role">AI / ML DEVELOPER &bull; SOFTWARE ENGINEER</div>
+      </div>
+
+      <div class="intro-terminal-box">
+        <div class="intro-terminal-header">
+          <span class="intro-terminal-dot dot-red"></span>
+          <span class="intro-terminal-dot dot-yellow"></span>
+          <span class="intro-terminal-dot dot-green"></span>
+          <span class="intro-terminal-title">SYS_BOOT :: KERNEL_INIT</span>
+        </div>
+        <div class="intro-log-text">
+          <span class="log-prompt">&gt;</span>
+          <span id="intro-log-line">INITIALIZING QUANTUM NEURAL CORE...</span>
+          <span class="log-cursor"></span>
+        </div>
+      </div>
+
+      <div class="intro-progress-wrapper">
+        <div class="intro-progress-bar">
+          <div class="intro-progress-fill" id="intro-progress-fill"></div>
+        </div>
+        <div class="intro-progress-meta">
+          <span class="intro-status-label">INITIALIZING ENGINE</span>
+          <span class="intro-counter" id="intro-counter">0%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dual Shutter Split Doors -->
+    <div class="intro-shutter intro-shutter-top"></div>
+    <div class="intro-shutter intro-shutter-bottom"></div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="Suravi Sehgal Home">
+        <span class="logo-badge">SS</span>
+        <div class="logo-text-group">
+          <span class="logo-name">Suravi Sehgal</span>
+          <span class="logo-tag">AI &bull; SOFTWARE</span>
+        </div>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#achievements" class="nav-link">Achievements</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#workshops" class="nav-link">Workshops</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-right">
+        <!-- Replay Opening Intro Animation -->
+        <button id="replay-intro-btn" class="nav-tool-btn" title="Replay Opening Animation"
+          aria-label="Replay intro animation">
+          <i class="fas fa-redo-alt" aria-hidden="true"></i>
+        </button>
+
+        <!-- Interactive Sound Synthesis Toggle -->
+        <button id="sound-toggle-btn" class="nav-tool-btn" title="Toggle interactive audio feedback"
+          aria-label="Toggle sound">
+          <i class="fas fa-volume-mute" aria-hidden="true"></i>
+        </button>
+
+        <a href="https://github.com/suravisehgal" target="_blank" rel="noopener noreferrer" class="nav-tool-btn"
+          title="Inspect GitHub Profile" aria-label="GitHub Profile">
+          <i class="fab fa-github" aria-hidden="true"></i>
+        </a>
+
+        <a href="https://www.linkedin.com/in/suravisehgal/" target="_blank" rel="noopener noreferrer"
+          class="nav-tool-btn" title="Connect on LinkedIn" aria-label="LinkedIn Profile">
+          <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+        </a>
+
+        <a href="#contact" class="btn btn-primary btn-sm">
+          <span>Let's Connect</span>
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+        </a>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false"
+          aria-controls="navMenu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Landmark -->
+  <main id="main-content">
+
+    <!-- =============================================================
+         HERO SECTION
+         ============================================================= -->
+    <section class="hero" id="hero">
+      <div class="container hero-grid">
+        <!-- Left: Hero Text & CTAs -->
+        <div class="hero-content">
+          <div class="status-pill">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>Available for AI/ML Engineering &amp; Software Roles</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="name-accent">SURAVI SEHGAL</span>
+          </h1>
+
+          <h2 class="hero-headline">
+            Building intelligent systems at the intersection of <em>AI, data &amp; software</em>.
+          </h2>
+
+          <p class="hero-bio">
+            AI &amp; Data Science undergraduate at <strong>ICFAItech, Hyderabad</strong>. A hands-on builder who
+            transforms foundational machine learning models, autonomous agent workflows, and computer vision pipelines
+            into battle-tested, hackathon-winning production applications.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary btn-lg">
+              <span>Explore Projects</span>
+              <i class="fas fa-arrow-down" aria-hidden="true"></i>
+            </a>
+
+            <a href="https://github.com/suravisehgal" target="_blank" rel="noopener noreferrer"
+              class="btn btn-secondary btn-lg">
+              <i class="fab fa-github" aria-hidden="true"></i>
+              <span>GitHub Profile &nearr;</span>
+            </a>
+
+            <a href="https://www.linkedin.com/in/suravisehgal/" target="_blank" rel="noopener noreferrer"
+              class="btn btn-secondary btn-lg">
+              <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+              <span>LinkedIn &nearr;</span>
+            </a>
+          </div>
+
+          <!-- Hero Metrics Bar -->
+          <div class="hero-stats-strip">
+            <div class="stat-item">
+              <div class="stat-number">
+                <span data-count="9">9</span><span class="plus">+</span>
+              </div>
+              <div class="stat-label">GitHub Repositories</div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-number">
+                <span data-count="4">4</span><span class="plus">x</span>
+              </div>
+              <div class="stat-label">Hackathon &amp; Pitch Awards</div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-number">
+                <span data-count="5">5</span><span class="plus">+</span>
+              </div>
+              <div class="stat-label">AI Architectures Shipped</div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-number">
+                <span data-count="4">4</span>
+              </div>
+              <div class="stat-label">Verified Certifications</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Developer Profile & Terminal CLI -->
+        <div class="hero-visual-card">
+          <div class="hero-profile-header">
+            <img src="assets/images/avatar.jpg" alt="Suravi Sehgal" class="hero-avatar" width="72" height="72">
+            <div class="profile-titles">
+              <h4>Suravi Sehgal</h4>
+              <p>AI &amp; Data Science &bull; ICFAItech</p>
+              <div class="profile-loc">
+                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                <span>Hyderabad, India</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Interactive CLI Console -->
+          <div class="hero-terminal" id="terminal-container">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <span class="terminal-title">suravi@engineer-shell: ~</span>
+            </div>
+
+            <div class="terminal-output" id="terminal-output">
+              <div class="cli-line">
+                <span class="cli-prompt">suravi@portfolio:~$</span>
+                <span class="cli-cmd-text">whoami</span>
+              </div>
+              <div class="cli-response">
+                <span class="cli-hl">Suravi Sehgal</span> — AI &amp; Data Science Undergraduate | AI/ML &amp; Full-Stack
+                Developer.<br>
+                <span class="cli-dim">Type <span class="cli-cmd">help</span> to list commands (projects, skills, awards,
+                  experience).</span>
+              </div>
+            </div>
+
+            <div class="terminal-input-row">
+              <span class="terminal-prompt">&gt;</span>
+              <input type="text" id="terminal-input" class="terminal-input"
+                placeholder="Type a command (e.g. projects, skills, help)..." autocomplete="off" spellcheck="false"
+                aria-label="Terminal command input">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         ABOUT SECTION
+         ============================================================= -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <!-- Left Column Profile Card -->
+          <div class="about-card-left">
+            <div class="about-profile-visual">
+              <img src="assets/images/avatar.jpg" alt="Suravi Sehgal portrait" class="about-large-avatar"
+                loading="lazy">
+              <div class="about-role-card">
+                <div class="about-role-title">Suravi Sehgal</div>
+                <div class="about-role-sub">AI/ML Engineer &amp; Full-Stack Builder</div>
+              </div>
+            </div>
+
+            <div class="about-meta-list">
+              <div class="arch-item" style="margin-bottom: 8px;">
+                <span class="arch-key">Academic Focus:</span>
+                <span class="arch-val">B.Tech in Artificial Intelligence &amp; Data Science (2025–2029)</span>
+              </div>
+              <div class="arch-item" style="margin-bottom: 8px;">
+                <span class="arch-key">Education:</span>
+                <span class="arch-val">ICFAItech, Hyderabad &bull; Delhi Public School (DPS)</span>
+              </div>
+              <div class="arch-item">
+                <span class="arch-key">Leadership:</span>
+                <span class="arch-val">Digital Head &bull; Student Coordinator (E-Cell)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column Narrative & Core Pillars -->
+          <div class="about-text-content">
+            <div class="section-tag">About Me</div>
+            <h3 class="section-title">
+              Engineering with real code, not just <span class="text-gradient">theoretical abstractions</span>.
+            </h3>
+
+            <p>
+              I am an AI &amp; Data Science undergraduate at ICFAItech, Hyderabad, with deep practical conviction in
+              building end-to-end intelligent products. Rather than stopping at notebook prototypes, I bridge the gap
+              between machine learning pipelines and production full-stack software.
+            </p>
+
+            <p>
+              My work spans <strong>Generative AI applications</strong> using Gemini and Groq, <strong>geospatial route
+                threat grading</strong> with Leaflet and Next.js 16, <strong>underwater acoustic sonar
+                preprocessing</strong> for marine conservation, and <strong>cross-platform mobile applications</strong>
+              using Flutter and MongoDB.
+            </p>
+
+            <div class="about-pillars">
+              <div class="pillar-item">
+                <div class="pillar-icon"><i class="fas fa-brain" aria-hidden="true"></i></div>
+                <h4 class="pillar-title">Generative AI &amp; Agents</h4>
+                <p class="pillar-desc">Architecting context-aware workflows, prompt graphs, tool calling, and
+                  Human-in-the-Loop decision systems.</p>
+              </div>
+
+              <div class="pillar-item">
+                <div class="pillar-icon"><i class="fas fa-eye" aria-hidden="true"></i></div>
+                <h4 class="pillar-title">Specialized Vision &amp; Sonar</h4>
+                <p class="pillar-desc">Preprocessing acoustic echograms with CLAHE, despeckling, and neural
+                  classification to detect marine anomalies.</p>
+              </div>
+
+              <div class="pillar-item">
+                <div class="pillar-icon"><i class="fas fa-layer-group" aria-hidden="true"></i></div>
+                <h4 class="pillar-title">Full-Stack Architecture</h4>
+                <p class="pillar-desc">Building resilient, low-latency web and mobile experiences with Next.js 16, React
+                  19, Flutter, and MongoDB.</p>
+              </div>
+
+              <div class="pillar-item">
+                <div class="pillar-icon"><i class="fas fa-trophy" aria-hidden="true"></i></div>
+                <h4 class="pillar-title">Competitive Builder</h4>
+                <p class="pillar-desc">1st Place GDG IFHE Hackathon 2026, 2nd Place National SIH 2025, Best Startup
+                  Pitch Winner &amp; Syntax2Code Genesis Hackathon.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         SKILLS SECTION
+         ============================================================= -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-tag">Technical Competencies</div>
+          <h2 class="section-title">
+            Technologies &amp; <span class="text-gradient">Engineering Stack</span>
+          </h2>
+          <p class="section-desc">
+            A comprehensive matrix of technologies directly demonstrated through my public GitHub repositories,
+            hackathon submissions, and verified credentials.
+          </p>
+        </div>
+
+        <div class="skills-container" id="skills-container">
+          <!-- Dynamically populated from SKILLS_DATA in js/main.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         PROJECTS SECTION
+         ============================================================= -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="projects-header-row">
+          <div>
+            <div class="section-tag">Featured Work</div>
+            <h2 class="section-title">
+              Production Systems &amp; <span class="text-gradient">Hackathon Winners</span>
+            </h2>
+            <p class="section-desc">
+              Every project is tied to a verified GitHub repository with working codebases, detailed READMEs, and actual
+              implementations.
+            </p>
+          </div>
+
+          <!-- Dynamic Category Filter Bar -->
+          <div class="filter-bar" role="tablist" aria-label="Project Categories">
+            <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All Projects
+              (9)</button>
+            <button class="filter-btn" data-filter="ai-ml" role="tab" aria-selected="false">AI / ML</button>
+            <button class="filter-btn" data-filter="genai" role="tab" aria-selected="false">GenAI &amp; Agents</button>
+            <button class="filter-btn" data-filter="full-stack" role="tab" aria-selected="false">Full-Stack</button>
+            <button class="filter-btn" data-filter="hackathons" role="tab" aria-selected="false">Hackathons</button>
+            <button class="filter-btn" data-filter="data-analytics" role="tab" aria-selected="false">Data &amp;
+              Analytics</button>
+          </div>
+        </div>
+
+        <!-- Dynamic Projects Grid -->
+        <div class="projects-grid" id="projects-grid">
+          <!-- Dynamically populated from PROJECTS_DATA in js/main.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         ACHIEVEMENTS & CERTIFICATIONS SECTION
+         ============================================================= -->
+    <section class="section" id="achievements">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-tag">Honors &amp; Credentials</div>
+          <h2 class="section-title">
+            Hackathon Victories &amp; <span class="text-gradient">Certified Expertise</span>
+          </h2>
+          <p class="section-desc">
+            Demonstrated recognition across national hackathons alongside verified industry credentials in Cloud AI,
+            Agents, and NoSQL architecture.
+          </p>
+        </div>
+
+        <div class="achievements-grid">
+          <!-- Left: Hackathon Victories -->
+          <div class="achievements-list" id="achievements-list">
+            <!-- Dynamically populated from ACHIEVEMENTS_DATA -->
+          </div>
+
+          <!-- Right: Verified Certifications -->
+          <div class="certifications-col">
+            <h3><i class="fas fa-certificate" style="color: var(--cyan);" aria-hidden="true"></i> Verified Industry
+              Certifications</h3>
+            <div class="certifications-grid" id="certifications-grid">
+              <!-- Dynamically populated from CERTIFICATIONS_DATA -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         EXPERIENCE & EDUCATION TIMELINE
+         ============================================================= -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-tag">Career &amp; Education</div>
+          <h2 class="section-title">
+            Professional Experience &amp; <span class="text-gradient">Academics</span>
+          </h2>
+          <p class="section-desc">
+            Real industry development experience combined with rigorous computer science and machine learning university
+            curriculum.
+          </p>
+        </div>
+
+        <div class="timeline" id="experience-timeline">
+          <!-- Dynamically populated from EXPERIENCE_DATA -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         WORKSHOPS ATTENDANCE & BUILDER NETWORK SECTION
+         ============================================================= -->
+    <section class="section" id="workshops">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-tag">Continuous Learning &amp; Ecosystem</div>
+          <h2 class="section-title">
+            Workshops Attended &amp; <span class="text-gradient">Collaborative Building</span>
+          </h2>
+          <p class="section-desc">
+            Actively participating in technical masterclasses, developer sprints, and founder roundtables — always eager
+            to exchange ideas and collaborate with builders tackling ambitious problems.
+          </p>
+        </div>
+
+        <!-- Collaboration Invitation Callout -->
+        <div class="collab-callout-card">
+          <div class="collab-icon-box"><i class="fas fa-handshake" aria-hidden="true"></i></div>
+          <div class="collab-text">
+            <h4>Building something ambitious in AI or software? Let's connect.</h4>
+            <p>I actively participate in tech workshops, developer masterclasses, and founder roundtables to exchange
+              perspectives and tackle challenging technical problems. If our technical curiosities and builder mindsets
+              align, I'd love to connect, brainstorm, and collaborate on real-world systems.</p>
+          </div>
+          <a href="#contact" class="btn btn-primary collab-btn"><span>Let's Connect</span> <i
+              class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Attended Workshops Grid -->
+        <div class="workshops-section" style="margin-top: 3rem;">
+          <div class="workshops-section-head">
+            <h3 class="workshops-section-title">Attended Masterclasses, Summits &amp; <span
+                class="text-gradient">Founder Roundtables</span></h3>
+            <p class="workshops-section-sub">A curated log of hands-on technical bootcamps, agent architecture sessions,
+              and founder workshops attended.</p>
+          </div>
+          <div class="workshops-grid" id="workshops-grid">
+            <!-- Dynamically populated from WORKSHOPS_DATA via main.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         GITHUB DEVELOPER ACTIVITY SECTION
+         ============================================================= -->
+    <section class="section section-tight" id="github-activity">
+      <div class="container">
+        <div class="github-overview-card">
+          <div class="gh-card-head">
+            <div class="gh-user-identity">
+              <img src="assets/images/avatar.jpg" alt="Suravi Sehgal avatar" class="gh-avatar-circle" width="58"
+                height="58">
+              <div class="gh-name-wrap">
+                <h3>Suravi Sehgal</h3>
+                <a href="https://github.com/suravisehgal" target="_blank" rel="noopener noreferrer">@suravisehgal on
+                  GitHub ↗</a>
+              </div>
+            </div>
+
+            <a href="https://github.com/suravisehgal" target="_blank" rel="noopener noreferrer" class="btn btn-github">
+              <i class="fab fa-github" aria-hidden="true"></i>
+              <span>Follow on GitHub &rarr;</span>
+            </a>
+          </div>
+
+          <div class="gh-metrics-grid">
+            <div class="gh-metric-box">
+              <div class="gh-metric-num">9</div>
+              <div class="gh-metric-label">Public Repositories</div>
+            </div>
+            <div class="gh-metric-box">
+              <div class="gh-metric-num">5+</div>
+              <div class="gh-metric-label">AI &amp; ML Engines</div>
+            </div>
+            <div class="gh-metric-box">
+              <div class="gh-metric-num">2x</div>
+              <div class="gh-metric-label">National Hackathon Wins</div>
+            </div>
+            <div class="gh-metric-box">
+              <div class="gh-metric-num">100%</div>
+              <div class="gh-metric-label">Code Authenticity</div>
+            </div>
+          </div>
+
+          <!-- Language distribution bar -->
+          <div class="gh-languages-bar">
+            <div class="gh-lang-title">
+              <span>Primary Technologies in Repositories</span>
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--cyan);">Live Repository
+                Data</span>
+            </div>
+            <div class="lang-progress-multi" title="TypeScript, JavaScript, Python, Dart, HTML/CSS">
+              <div class="lang-segment lang-ts" style="width: 38%;" title="TypeScript (38%)"></div>
+              <div class="lang-segment lang-dart" style="width: 24%;" title="Dart & Flutter (24%)"></div>
+              <div class="lang-segment lang-js" style="width: 20%;" title="JavaScript (20%)"></div>
+              <div class="lang-segment lang-py" style="width: 12%;" title="Python (12%)"></div>
+              <div class="lang-segment lang-html" style="width: 6%;" title="HTML/CSS (6%)"></div>
+            </div>
+            <div class="lang-legend">
+              <div class="legend-item"><span class="legend-dot lang-ts"></span> TypeScript (38%)</div>
+              <div class="legend-item"><span class="legend-dot lang-dart"></span> Dart / Flutter (24%)</div>
+              <div class="legend-item"><span class="legend-dot lang-js"></span> JavaScript (20%)</div>
+              <div class="legend-item"><span class="legend-dot lang-py"></span> Python (12%)</div>
+              <div class="legend-item"><span class="legend-dot lang-html"></span> HTML / CSS (6%)</div>
+            </div>
+          </div>
+
+          <div class="gh-cta-box">
+            <div class="gh-cta-text">
+              <h4>Want to audit my actual code quality?</h4>
+              <p>Explore commits, branches, unit tests, and architectures directly on my connected GitHub.</p>
+            </div>
+            <a href="https://github.com/suravisehgal?tab=repositories" target="_blank" rel="noopener noreferrer"
+              class="btn btn-secondary btn-sm">
+              <i class="fas fa-code-branch" aria-hidden="true"></i>
+              <span>Browse All Repositories &rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         CONTACT SECTION
+         ============================================================= -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-grid">
+          <!-- Left: Direct Info & Social Cards -->
+          <div class="contact-info-col">
+            <div class="section-tag">Let's Connect</div>
+            <h3 class="section-title">
+              Let's build something <span class="text-gradient">intelligent together</span>.
+            </h3>
+            <p>
+              I am actively seeking AI/ML engineering, generative AI, and software engineering opportunities where I can
+              apply production-grade architectural thinking, autonomous agent systems, and full-stack rigor.
+            </p>
+
+            <div class="contact-links-list">
+              <!-- Email Card with Copy Trigger -->
+              <div class="contact-link-card">
+                <div class="contact-icon-box"><i class="fas fa-envelope" aria-hidden="true"></i></div>
+                <div class="contact-link-text">
+                  <h4>Email Directly</h4>
+                  <p>suravisehgal@gmail.com</p>
+                </div>
+                <button class="copy-btn" id="copy-email-btn" title="Copy email address" aria-label="Copy email">
+                  <i class="far fa-copy" aria-hidden="true"></i> Copy
+                </button>
+              </div>
+
+              <!-- LinkedIn Card -->
+              <a href="https://www.linkedin.com/in/suravisehgal/" target="_blank" rel="noopener noreferrer"
+                class="contact-link-card">
+                <div class="contact-icon-box"><i class="fab fa-linkedin-in" aria-hidden="true"></i></div>
+                <div class="contact-link-text">
+                  <h4>LinkedIn Profile</h4>
+                  <p>linkedin.com/in/suravisehgal</p>
+                </div>
+                <i class="fas fa-external-link-alt" style="margin-left: auto; color: var(--text-dim);"
+                  aria-hidden="true"></i>
+              </a>
+
+              <!-- GitHub Card -->
+              <a href="https://github.com/suravisehgal" target="_blank" rel="noopener noreferrer"
+                class="contact-link-card">
+                <div class="contact-icon-box"><i class="fab fa-github" aria-hidden="true"></i></div>
+                <div class="contact-link-text">
+                  <h4>GitHub Profile</h4>
+                  <p>github.com/suravisehgal</p>
+                </div>
+                <i class="fas fa-external-link-alt" style="margin-left: auto; color: var(--text-dim);"
+                  aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Message Form -->
+          <div class="contact-form-card">
+            <form id="contact-form">
+              <div class="form-group">
+                <label for="contact-name" class="form-label">Your Name</label>
+                <input type="text" id="contact-name" class="form-input" placeholder="e.g. Satya Nadella / Recruiter"
+                  required>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email" class="form-label">Your Email</label>
+                <input type="email" id="contact-email" class="form-input" placeholder="name@company.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-subject" class="form-label">Opportunity / Subject</label>
+                <input type="text" id="contact-subject" class="form-input"
+                  placeholder="AI/ML Engineer Role / Hackathon Collaboration" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message" class="form-label">Message</label>
+                <textarea id="contact-message" class="form-textarea"
+                  placeholder="Tell me about the role, technical challenge, or project you'd like to collaborate on..."
+                  required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                <span>Send Message to Suravi</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =============================================================
+       FOOTER
+       ============================================================= -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-copy">
+        &copy; 2026 <strong>Suravi Sehgal</strong>. Designed &amp; engineered with high-polish standards.
+      </div>
+      <div class="footer-links">
+        <a href="#hero" class="footer-link">Back to Top &uarr;</a>
+        <a href="https://github.com/suravisehgal" target="_blank" rel="noopener noreferrer"
+          class="footer-link">GitHub</a>
+        <a href="https://www.linkedin.com/in/suravisehgal/" target="_blank" rel="noopener noreferrer"
+          class="footer-link">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =============================================================
+       PROJECT ARCHITECTURE INSPECTION MODAL
+       ============================================================= -->
+  <div class="project-modal" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-body">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close project modal">&times;</button>
+      <div id="modal-body">
+        <!-- Dynamically injected by openProjectModal() in js/main.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Module Entrypoint -->
+  <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

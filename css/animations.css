@@ -1,0 +1,667 @@
+/**
+ * Suravi Sehgal — Portfolio Animations & Micro-Interactions
+ * Cinematic Neural Boot Sequence, Staggered Hero Entrance & Rich Physics
+ */
+
+/* =============================================================
+   1. KEYFRAME DEFINITIONS
+   ============================================================= */
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(52, 211, 153, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+  }
+}
+
+@keyframes float-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* HUD & Neural Ring Rotations */
+@keyframes hudRotateCw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hudRotateCcw {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes corePulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 35px rgba(56, 189, 248, 0.7), 0 0 70px rgba(129, 140, 248, 0.4);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 50px rgba(103, 232, 249, 0.9), 0 0 90px rgba(192, 132, 252, 0.6);
+  }
+}
+
+@keyframes glowBreathe {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes introGlowPulse {
+  0% {
+    opacity: 0.6;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes blinkCursor {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes shimmerTitle {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Hero Staggered Entrance Animations */
+@keyframes heroNavEntrance {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes heroStatusEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heroTitle3DEntrance {
+  0% {
+    opacity: 0;
+    transform: perspective(900px) rotateX(24deg) translateY(42px);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(900px) rotateX(0deg) translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes heroFadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroVisualCardEntrance {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(-12deg) translateY(36px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0deg) translateY(0) scale(1);
+  }
+}
+
+/* =============================================================
+   2. OPENING INTRO / PRELOADER CURTAIN
+   ============================================================= */
+
+body.intro-active {
+  overflow: hidden !important;
+  height: 100vh;
+}
+
+.intro-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #040711;
+  overflow: hidden;
+  pointer-events: all;
+  perspective: 1000px;
+}
+
+/* Dual Shutter Split Doors */
+.intro-shutter {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 50.4%;
+  background: linear-gradient(180deg, #050814 0%, #03060f 100%);
+  z-index: 1;
+  pointer-events: none;
+  transition: transform 0.82s cubic-bezier(0.77, 0, 0.175, 1);
+  will-change: transform;
+}
+
+.intro-shutter-top {
+  top: 0;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.28);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.85);
+}
+
+.intro-shutter-bottom {
+  bottom: 0;
+  border-top: 1px solid rgba(56, 189, 248, 0.28);
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.85);
+}
+
+/* Exit Transition */
+.intro-curtain.intro-finished .intro-shutter-top {
+  transform: translateY(-101%);
+}
+
+.intro-curtain.intro-finished .intro-shutter-bottom {
+  transform: translateY(101%);
+}
+
+.intro-curtain.intro-finished .intro-content {
+  opacity: 0;
+  transform: scale(1.08);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+.intro-curtain.intro-finished {
+  pointer-events: none;
+}
+
+/* Ambient Cyber Glow & Background Grid */
+.intro-bg-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.18) 0%, rgba(129, 140, 248, 0.1) 40%, transparent 72%);
+  pointer-events: none;
+  z-index: 0;
+  animation: introGlowPulse 4s ease-in-out infinite alternate;
+}
+
+.intro-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Center Content Box */
+.intro-content {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.5s ease;
+  will-change: opacity, transform, filter;
+}
+
+/* Holographic Neural Core HUD */
+.intro-hud-core {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  margin-bottom: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hud-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hud-ring-outer {
+  width: 170px;
+  height: 170px;
+  border: 1.5px dashed rgba(56, 189, 248, 0.45);
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
+  animation: hudRotateCw 22s linear infinite;
+}
+
+.hud-ring-mid {
+  width: 130px;
+  height: 130px;
+  border: 1.5px dotted rgba(129, 140, 248, 0.5);
+  animation: hudRotateCcw 14s linear infinite;
+}
+
+.hud-ring-inner {
+  width: 96px;
+  height: 96px;
+  border: 2px solid transparent;
+  border-top-color: var(--cyan-bright, #67e8f9);
+  border-bottom-color: var(--violet, #818cf8);
+  animation: hudRotateCw 4s linear infinite;
+}
+
+.hud-crosshairs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hud-crosshairs::before,
+.hud-crosshairs::after {
+  content: "";
+  position: absolute;
+  background: rgba(56, 189, 248, 0.25);
+}
+
+.hud-crosshairs::before {
+  left: 50%;
+  top: -8px;
+  bottom: -8px;
+  width: 1px;
+  transform: translateX(-50%);
+}
+
+.hud-crosshairs::after {
+  top: 50%;
+  left: -8px;
+  right: -8px;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.intro-logo-badge {
+  position: relative;
+  z-index: 2;
+  width: 66px;
+  height: 66px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 35px rgba(56, 189, 248, 0.7), 0 0 70px rgba(129, 140, 248, 0.4);
+  animation: corePulse 2.4s ease-in-out infinite;
+}
+
+.intro-logo-text {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #040711;
+  letter-spacing: -0.02em;
+}
+
+.intro-core-glow {
+  position: absolute;
+  inset: -12px;
+  border-radius: 28px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.5), transparent 70%);
+  filter: blur(10px);
+  z-index: -1;
+  animation: glowBreathe 2s ease-in-out infinite alternate;
+}
+
+/* Intro Typography */
+.intro-meta {
+  margin-bottom: 1.25rem;
+}
+
+.intro-author {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: clamp(1.4rem, 4vw, 1.85rem);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #ffffff;
+  margin-bottom: 0.35rem;
+  text-shadow: 0 2px 24px rgba(103, 232, 249, 0.35);
+}
+
+.intro-role {
+  font-family: var(--font-mono, monospace);
+  font-size: clamp(0.72rem, 2vw, 0.8rem);
+  letter-spacing: 0.18em;
+  color: var(--cyan-bright, #67e8f9);
+  text-transform: uppercase;
+}
+
+/* Telemetry Log Box */
+.intro-terminal-box {
+  width: 100%;
+  background: rgba(8, 13, 30, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  border-radius: 12px;
+  padding: 0.75rem 1.1rem;
+  margin-bottom: 1.4rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
+  text-align: left;
+}
+
+.intro-terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.intro-terminal-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot-red {
+  background: #f43f5e;
+  box-shadow: 0 0 6px rgba(244, 63, 94, 0.6);
+}
+
+.dot-yellow {
+  background: #fbbf24;
+  box-shadow: 0 0 6px rgba(251, 191, 36, 0.6);
+}
+
+.dot-green {
+  background: #34d399;
+  box-shadow: 0 0 6px rgba(52, 211, 153, 0.6);
+}
+
+.intro-terminal-title {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  color: var(--text-dim, #60728f);
+  letter-spacing: 0.08em;
+  margin-left: auto;
+}
+
+.intro-log-text {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.78rem;
+  color: #67e8f9;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 1.4rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.log-prompt {
+  color: var(--violet, #818cf8);
+  font-weight: 700;
+}
+
+.log-cursor {
+  display: inline-block;
+  width: 7px;
+  height: 13px;
+  background: var(--cyan-bright, #67e8f9);
+  animation: blinkCursor 0.7s infinite;
+  margin-left: 2px;
+}
+
+/* Progress Track & Numeric Counter */
+.intro-progress-wrapper {
+  width: 100%;
+}
+
+.intro-progress-bar {
+  height: 5px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 0.6rem;
+}
+
+.intro-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+  border-radius: 999px;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.9);
+  transition: width 0.06s linear;
+}
+
+.intro-progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.74rem;
+  color: var(--text-dim, #60728f);
+  letter-spacing: 0.06em;
+}
+
+.intro-counter {
+  color: var(--cyan-bright, #67e8f9);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+/* Skip Button */
+.intro-skip-btn {
+  position: absolute;
+  top: 1.75rem;
+  right: 2rem;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-muted, #9db0cc);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.intro-skip-btn:hover {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(56, 189, 248, 0.25);
+}
+
+.intro-skip-btn kbd {
+  display: inline-block;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.68rem;
+  color: #fff;
+}
+
+/* =============================================================
+   3. HERO ENTRANCE CASCADE ANIMATIONS
+   ============================================================= */
+
+/* Shimmer on name accent */
+.hero-title span.name-accent {
+  background: linear-gradient(110deg, #67e8f9 0%, #818cf8 25%, #c084fc 50%, #67e8f9 75%, #818cf8 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerTitle 6s linear infinite;
+}
+
+.navbar.hero-animate-in {
+  animation: heroNavEntrance 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.hero.hero-animate-in .status-pill {
+  animation: heroStatusEntrance 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) 0.12s both;
+}
+
+.hero.hero-animate-in .hero-title {
+  animation: heroTitle3DEntrance 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) 0.22s both;
+}
+
+.hero.hero-animate-in .hero-headline {
+  animation: heroFadeSlideUp 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) 0.34s both;
+}
+
+.hero.hero-animate-in .hero-bio {
+  animation: heroFadeSlideUp 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) 0.46s both;
+}
+
+.hero.hero-animate-in .hero-actions {
+  animation: heroFadeSlideUp 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) 0.58s both;
+}
+
+.hero.hero-animate-in .hero-stats-strip {
+  animation: heroFadeSlideUp 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) 0.7s both;
+}
+
+.hero.hero-animate-in .hero-visual-card {
+  animation: heroVisualCardEntrance 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both;
+}
+
+/* =============================================================
+   4. SCROLL REVEAL & HOVER GLOW UTILITIES
+   ============================================================= */
+
+.reveal-init {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hover-glow-card {
+  position: relative;
+}
+
+.hover-glow-card::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.4), rgba(129, 140, 248, 0.2), transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.hover-glow-card:hover::after {
+  opacity: 1;
+}
+
+/* =============================================================
+   5. ACCESSIBILITY / REDUCED MOTION CHECK
+   ============================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .intro-curtain {
+    display: none !important;
+  }
+  body.intro-active {
+    overflow: auto !important;
+    height: auto !important;
+  }
+}
